@@ -2,13 +2,13 @@ package exercises.hh;
 
 import java.util.ArrayList;
 
-public class periodCalcHelper {
+public class PeriodCalcHelper {
 	int predPeriod;
 	long period;
 	
 	
 	// Основной getter. Получаем значения периода и предпериода	
-	public  periodCalcHelper getPeriodParameters(long divider, int scale){
+	public  PeriodCalcHelper getPeriodParameters(long divider, int scale){
 		ArrayList<Long> pList = new ArrayList<Long>();
 		ArrayList<Long> qList = new ArrayList<Long>();
 		ArrayList<Long> pModuleList =new ArrayList<Long>();
