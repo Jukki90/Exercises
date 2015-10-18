@@ -7,13 +7,13 @@ public class periodCalcHelper {
 	long period;
 	
 	
-	// Основной getter. Получаем значения периода и предпериода	
+	// РћСЃРЅРѕРІРЅРѕР№ getter. РџРѕР»СѓС‡Р°РµРј Р·РЅР°С‡РµРЅРёСЏ РїРµСЂРёРѕРґР° Рё РїСЂРµРґРїРµСЂРёРѕРґР°	
 	public  periodCalcHelper getPeriodParameters(long divider, int scale){
 		ArrayList<Long> pList = new ArrayList<Long>();
 		ArrayList<Long> qList = new ArrayList<Long>();
 		ArrayList<Long> pModuleList =new ArrayList<Long>();
 
-		findDelimeters(divider, scale, pList, qList); // разложение делителя на множители
+		findDelimeters(divider, scale, pList, qList); // СЂР°Р·Р»РѕР¶РµРЅРёРµ РґРµР»РёС‚РµР»СЏ РЅР° РјРЅРѕР¶РёС‚РµР»Рё
 		calcPeriod(scale, qList, pModuleList);
 		calcPredPeriod(pList);
 		
@@ -22,11 +22,11 @@ public class periodCalcHelper {
 
 	
 	
-	/* Разложение числа B на множители:
+	/* Р Р°Р·Р»РѕР¶РµРЅРёРµ С‡РёСЃР»Р° B РЅР° РјРЅРѕР¶РёС‚РµР»Рё:
 	 * B = (p1^a1)*...*(pn^an)*(q1^a1)*...*(qn^an)
-	 * Заполняем 2 массива значениями: 
-	 * pList - множители делителя, причем основание системы счисления делится на эти множители
-	 * qList -множители делителя, причем основание системы счисления не делится на эти множители
+	 * Р—Р°РїРѕР»РЅСЏРµРј 2 РјР°СЃСЃРёРІР° Р·РЅР°С‡РµРЅРёСЏРјРё: 
+	 * pList - РјРЅРѕР¶РёС‚РµР»Рё РґРµР»РёС‚РµР»СЏ, РїСЂРёС‡РµРј РѕСЃРЅРѕРІР°РЅРёРµ СЃРёСЃС‚РµРјС‹ СЃС‡РёСЃР»РµРЅРёСЏ РґРµР»РёС‚СЃСЏ РЅР° СЌС‚Рё РјРЅРѕР¶РёС‚РµР»Рё
+	 * qList -РјРЅРѕР¶РёС‚РµР»Рё РґРµР»РёС‚РµР»СЏ, РїСЂРёС‡РµРј РѕСЃРЅРѕРІР°РЅРёРµ СЃРёСЃС‚РµРјС‹ СЃС‡РёСЃР»РµРЅРёСЏ РЅРµ РґРµР»РёС‚СЃСЏ РЅР° СЌС‚Рё РјРЅРѕР¶РёС‚РµР»Рё
 	 */
 	private static void findDelimeters(long B, int scale, ArrayList<Long> pList, ArrayList<Long> qList){
 		for (long i = 2; i <= B; i++) {
@@ -52,7 +52,7 @@ public class periodCalcHelper {
 
 	private void calcPeriod(int scale, ArrayList<Long> qList,
 			ArrayList<Long> pModuleList) {
-			fillmultOrderArray(qList, pModuleList, scale); // заполнение вспомогательного массива для вычисления периода
+			fillmultOrderArray(qList, pModuleList, scale); // Р·Р°РїРѕР»РЅРµРЅРёРµ РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅРѕРіРѕ РјР°СЃСЃРёРІР° РґР»СЏ РІС‹С‡РёСЃР»РµРЅРёСЏ РїРµСЂРёРѕРґР°
 		
 		if (qList.size()!=0){
 			period = massLcm(pModuleList);
@@ -62,7 +62,7 @@ public class periodCalcHelper {
 	}
 		
 	
-	//Заполнение вспомогательного массива, состоящего из показателей чисел по модулю
+	//Р—Р°РїРѕР»РЅРµРЅРёРµ РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅРѕРіРѕ РјР°СЃСЃРёРІР°, СЃРѕСЃС‚РѕСЏС‰РµРіРѕ РёР· РїРѕРєР°Р·Р°С‚РµР»РµР№ С‡РёСЃРµР» РїРѕ РјРѕРґСѓР»СЋ
 	private static void fillmultOrderArray(ArrayList<Long> qList, ArrayList<Long> pModuleList, int scale){
 		for (int i=0; i<qList.size(); i++){
 			pModuleList.add(multiplicativeOrder(qList.get(i), scale));
@@ -72,9 +72,9 @@ public class periodCalcHelper {
 	
 
 	
-	/* Вычисление периода дроби A/B в системе счисления scale */ 
+	/* Р’С‹С‡РёСЃР»РµРЅРёРµ РїРµСЂРёРѕРґР° РґСЂРѕР±Рё A/B РІ СЃРёСЃС‚РµРјРµ СЃС‡РёСЃР»РµРЅРёСЏ scale */ 
 	
-	// Вычисление показателя числа по модулю
+	// Р’С‹С‡РёСЃР»РµРЅРёРµ РїРѕРєР°Р·Р°С‚РµР»СЏ С‡РёСЃР»Р° РїРѕ РјРѕРґСѓР»СЋ
 	private static long multiplicativeOrder(long b, int scale){
 		long i=1;
 		while((Math.pow(scale, i)%b)!=1){
@@ -85,17 +85,17 @@ public class periodCalcHelper {
 	}
 	
 
-	// НОД
+	// РќРћР”
 	private static long gcd(long a,long b){
 		return b == 0 ? a : gcd(b,a % b);		
 	}
 	
-	//НОК (наименьшее общее кратное)
+	//РќРћРљ (РЅР°РёРјРµРЅСЊС€РµРµ РѕР±С‰РµРµ РєСЂР°С‚РЅРѕРµ)
 	private static long lcm(long a,long b){
 		return a / gcd(a,b) * b;
 	}
 	
-	// НОК для большого кол-ва данных (ArrayList)
+	// РќРћРљ РґР»СЏ Р±РѕР»СЊС€РѕРіРѕ РєРѕР»-РІР° РґР°РЅРЅС‹С… (ArrayList)
 	public static long massLcm(ArrayList<Long> list){
 		long res=1;
 		for(int i=0; i<list.size();i++)
@@ -106,8 +106,7 @@ public class periodCalcHelper {
 	
 	
 	
-	// Вычисление предпериода
-
+	// Р’С‹С‡РёСЃР»РµРЅРёРµ РїСЂРµРґРїРµСЂРёРѕРґР°
 	private void calcPredPeriod(ArrayList<Long> pList) {
 		if (pList.size()!=0){
 			predPeriod=maxGrade(pList);
@@ -116,9 +115,9 @@ public class periodCalcHelper {
 	}
 
 	
-	/* Максимальное кол-во повторяющихся элементов 
-	*(для получения максимальной степени ak в разложении number = (p1^a1)*...*(pn^an)*(q1^a1)*...*(qn^an)
-	* и получения предпериода
+	/* РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»-РІРѕ РїРѕРІС‚РѕСЂСЏСЋС‰РёС…СЃСЏ СЌР»РµРјРµРЅС‚РѕРІ 
+	*(РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РјР°РєСЃРёРјР°Р»СЊРЅРѕР№ СЃС‚РµРїРµРЅРё ak РІ СЂР°Р·Р»РѕР¶РµРЅРёРё number = (p1^a1)*...*(pn^an)*(q1^a1)*...*(qn^an)
+	* Рё РїРѕР»СѓС‡РµРЅРёСЏ РїСЂРµРґРїРµСЂРёРѕРґР°
 	*/
 	public  static int maxGrade(ArrayList<Long> list){
 		int count=0;
@@ -138,7 +137,5 @@ public class periodCalcHelper {
 		return maxCount;
 	}
 	
-
-
 
 }

@@ -9,10 +9,10 @@ import java.util.Scanner;
 
 public class Median{
 	public static void main(String [] args){	
-		System.out.println("Медиана равна: "+ getMedian("Median.txt"));
+		System.out.println("РњРµРґРёР°РЅР° СЂР°РІРЅР°: "+ getMedian("Median.txt"));
 	}
 	
-	// Основной метод, координирующий работу остальных
+	// РћСЃРЅРѕРІРЅРѕР№ РјРµС‚РѕРґ, РєРѕРѕСЂРґРёРЅРёСЂСѓСЋС‰РёР№ СЂР°Р±РѕС‚Сѓ РѕСЃС‚Р°Р»СЊРЅС‹С…
 	public static BigDecimal getMedian(String filepath){
 		ArrayList<BigDecimal> arr1 = new ArrayList<BigDecimal>();
 		ArrayList<BigDecimal> arr2 = new ArrayList<BigDecimal>();
@@ -22,17 +22,17 @@ public class Median{
 	}
 	
 	
-	// Вычисление значения медианы
+	// Р’С‹С‡РёСЃР»РµРЅРёРµ Р·РЅР°С‡РµРЅРёСЏ РјРµРґРёР°РЅС‹
 		private static BigDecimal calcMedian( ArrayList<BigDecimal> arr1,  ArrayList<BigDecimal> arr2){
 			int N=arr1.size();
 			if (N==0) return BigDecimal.valueOf(0);
 			ArrayList<BigDecimal> res = new ArrayList<BigDecimal>();
 			int i=0,j=0;
 			 while (i < N && j < N) {
-		            // В соответствии с тем, текущий элемент
-		            // какого массива меньше, мы записываем
-		            // этот элемент в массив-результат и
-		            // обновляем нужный индекс (i или j)
+		            // Р’ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё СЃ С‚РµРј, С‚РµРєСѓС‰РёР№ СЌР»РµРјРµРЅС‚
+		            // РєР°РєРѕРіРѕ РјР°СЃСЃРёРІР° РјРµРЅСЊС€Рµ, РјС‹ Р·Р°РїРёСЃС‹РІР°РµРј
+		            // СЌС‚РѕС‚ СЌР»РµРјРµРЅС‚ РІ РјР°СЃСЃРёРІ-СЂРµР·СѓР»СЊС‚Р°С‚ Рё
+		            // РѕР±РЅРѕРІР»СЏРµРј РЅСѓР¶РЅС‹Р№ РёРЅРґРµРєСЃ (i РёР»Рё j)
 		            if (arr2.get(j).compareTo(arr1.get(i))==1) {
 		               res.add(arr1.get(i));
 		                i++;
@@ -42,13 +42,13 @@ public class Median{
 		            }
 		        }
 
-		        // После выполнения предыдущего цикла
-		        // все элементы одного из массивов будут
-		        // обработаны, тогда оставшиеся элементы
-		        // другого массива нужно просто дописать
-		        // в массив-результат
-		        // Заметим, что одно из условий (i < n)
-		        // или (j < m) будет гарантированно ложно
+		        // РџРѕСЃР»Рµ РІС‹РїРѕР»РЅРµРЅРёСЏ РїСЂРµРґС‹РґСѓС‰РµРіРѕ С†РёРєР»Р°
+		        // РІСЃРµ СЌР»РµРјРµРЅС‚С‹ РѕРґРЅРѕРіРѕ РёР· РјР°СЃСЃРёРІРѕРІ Р±СѓРґСѓС‚
+		        // РѕР±СЂР°Р±РѕС‚Р°РЅС‹, С‚РѕРіРґР° РѕСЃС‚Р°РІС€РёРµСЃСЏ СЌР»РµРјРµРЅС‚С‹
+		        // РґСЂСѓРіРѕРіРѕ РјР°СЃСЃРёРІР° РЅСѓР¶РЅРѕ РїСЂРѕСЃС‚Рѕ РґРѕРїРёСЃР°С‚СЊ
+		        // РІ РјР°СЃСЃРёРІ-СЂРµР·СѓР»СЊС‚Р°С‚
+		        // Р—Р°РјРµС‚РёРј, С‡С‚Рѕ РѕРґРЅРѕ РёР· СѓСЃР»РѕРІРёР№ (i < n)
+		        // РёР»Рё (j < m) Р±СѓРґРµС‚ РіР°СЂР°РЅС‚РёСЂРѕРІР°РЅРЅРѕ Р»РѕР¶РЅРѕ
 		        while (i < N) {
 		        	res.add(arr1.get(i));
 		            i++;
@@ -63,9 +63,9 @@ public class Median{
 		        return median;		
 		}
 	
-	//-- Вспомогательные методы --
+	//-- Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ РјРµС‚РѕРґС‹ --
 
-	// Считывание данных из файла и заполнение ArrayList-ов
+	// РЎС‡РёС‚С‹РІР°РЅРёРµ РґР°РЅРЅС‹С… РёР· С„Р°Р№Р»Р° Рё Р·Р°РїРѕР»РЅРµРЅРёРµ ArrayList-РѕРІ
 	private static void fillArrayLists(String filepath, ArrayList<BigDecimal> arr1, ArrayList<BigDecimal> arr2) {
 		try{
 			 File file = new File(filepath);
@@ -81,14 +81,13 @@ public class Median{
 		}
 	}
 	
-	// Заполнение единичного ArrayList данными из строки
+	
+	// Р—Р°РїРѕР»РЅРµРЅРёРµ РµРґРёРЅРёС‡РЅРѕРіРѕ ArrayList РґР°РЅРЅС‹РјРё РёР· СЃС‚СЂРѕРєРё
 	private static void fillSingleArray(ArrayList<BigDecimal> arr1,String s1) {
 			 String[] as1 = s1.split(" ");
 			 for(int i=0; i<as1.length; i++){
 				 arr1.add(new BigDecimal(as1[i]));
 			 }
 		 }
-
-	
 
 }
