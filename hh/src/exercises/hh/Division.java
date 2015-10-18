@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Division {
 	
 public static void main(String [] args){
-	System.out.println("Результат деления равен: "+ getDivisionResult("Division.txt"));
+	System.out.println("Result: "+ getDivisionResult("Division.txt"));
 
 }
 
@@ -20,38 +20,38 @@ public static void main(String [] args){
 		ArrayList<String> alphaNum = new ArrayList<String>();
 		
 		try{
-			// считывание данных из файла
+			// СЃС‡РёС‚С‹РІР°РЅРёРµ РґР°РЅРЅС‹С… РёР· С„Р°Р№Р»Р°
 			File file = new File(filepath); 
 			Scanner sc = new Scanner(file);
 			String str = sc.nextLine();
 			sc.close();
 			String[] strArr = str.split(" ");
 
-			// Дробь A/B в системе счисления scale
+			// Р”СЂРѕР±СЊ A/B РІ СЃРёСЃС‚РµРјРµ СЃС‡РёСЃР»РµРЅРёСЏ scale
 			long A = Long.parseLong(strArr[0]);
 			long B = Long.parseLong(strArr[1]);
 			int scale = Integer.parseInt(strArr[2]);
 
-			// Проверка данных
+			// РџСЂРѕРІРµСЂРєР° РґР°РЅРЅС‹С…
 			if (scale <2 || scale>36) {
 					System.out.println("Please use a number between 2 and 36 as a radix");
 			} 
 			
 			else {
 				if (scale>10){
-					// Устанавливаем символы для чисел больше 9 в соответствующей системе счисления
+					// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј СЃРёРјРІРѕР»С‹ РґР»СЏ С‡РёСЃРµР» Р±РѕР»СЊС€Рµ 9 РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РµР№ СЃРёСЃС‚РµРјРµ СЃС‡РёСЃР»РµРЅРёСЏ
 					setAlphabetNumberSystem(alphaNum, scale);
 			}
 			
-			// отделение целой и дробной частей	
+			// РѕС‚РґРµР»РµРЅРёРµ С†РµР»РѕР№ Рё РґСЂРѕР±РЅРѕР№ С‡Р°СЃС‚РµР№	
 			long integerPart = (long)Math.abs(A/B);
 			double fractioalPart = Math.abs((double) A / B) - integerPart; 
 			
-			// Используем хелпер для нахождения периода и предпериода дроби
+			// РСЃРїРѕР»СЊР·СѓРµРј С…РµР»РїРµСЂ РґР»СЏ РЅР°С…РѕР¶РґРµРЅРёСЏ РїРµСЂРёРѕРґР° Рё РїСЂРµРґРїРµСЂРёРѕРґР° РґСЂРѕР±Рё
 			periodCalcHelper period = new periodCalcHelper();
 			period.getPeriodParameters(Math.abs(B), scale);
 			
-			if (((double)A/B)<0) outcome="-"; // установление знака
+			if (((double)A/B)<0) outcome="-"; // СѓСЃС‚Р°РЅРѕРІР»РµРЅРёРµ Р·РЅР°РєР°
 				outcome+=convertIntegerPart(integerPart,scale, alphaNum)+"."+convertFractionalPart(fractioalPart, scale, alphaNum, period.predPeriod, period.period);
 
 			}
@@ -65,10 +65,10 @@ public static void main(String [] args){
 
 
 
-	//-- Вспомогательные методы --
+	//-- Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ РјРµС‚РѕРґС‹ --
 
 	
-	// Конвертация целой части в нужную систему счисления
+	// РљРѕРЅРІРµСЂС‚Р°С†РёСЏ С†РµР»РѕР№ С‡Р°СЃС‚Рё РІ РЅСѓР¶РЅСѓСЋ СЃРёСЃС‚РµРјСѓ СЃС‡РёСЃР»РµРЅРёСЏ
 
 	private static String convertIntegerPart(long dec, int scale, ArrayList<String> alphaNum){
 		String res="";
@@ -100,7 +100,7 @@ public static void main(String [] args){
 		
 
 
-	// Конвертация дробной части в нужную систему счисления
+	// РљРѕРЅРІРµСЂС‚Р°С†РёСЏ РґСЂРѕР±РЅРѕР№ С‡Р°СЃС‚Рё РІ РЅСѓР¶РЅСѓСЋ СЃРёСЃС‚РµРјСѓ СЃС‡РёСЃР»РµРЅРёСЏ
 	private static String convertFractionalPart(double dec, int scale, ArrayList<String> alphaNum, long predPeriod, long period){
 		String res="";
 		int num=0;
@@ -138,7 +138,7 @@ public static void main(String [] args){
 
 	
 	
-	// Заполнение массива латинскими буквами для систем счисления 10+
+	// Р—Р°РїРѕР»РЅРµРЅРёРµ РјР°СЃСЃРёРІР° Р»Р°С‚РёРЅСЃРєРёРјРё Р±СѓРєРІР°РјРё РґР»СЏ СЃРёСЃС‚РµРј СЃС‡РёСЃР»РµРЅРёСЏ 10+
 	private static void setAlphabetNumberSystem(ArrayList<String> alphaNum, int scale) {
 		int N= scale-10;
 		int ii=0;
